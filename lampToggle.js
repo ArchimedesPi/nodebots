@@ -8,6 +8,9 @@ board.on("ready", function () {
 	// Create the lamp as an LED
 	lamp = new five.Led(13);
 
+	// Shut it off (if it's already on)
+	lamp.off();
+
 	// Expose the lamp to the REPL
 	this.repl.inject({lamp: lamp});
 
@@ -47,11 +50,21 @@ server.route({
 });
 
 server.route({
+	method: 'POST',
+	route: '/lamp/strobe',
+	hander: function (request, reply) {
+		if (board.isReady) {
+
+		}
+	}
+})
+
+server.route({
 	method: 'GET',
 	path: '/lamp/status',
 	handler: function (request, reply) {
 		if (board.isReady) {
-			lamp.toggle();
+			lamp.
 			reply('{"this": "ok"}').code(200);
 		}
 	}
