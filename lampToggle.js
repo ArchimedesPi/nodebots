@@ -54,7 +54,11 @@ server.route({
 	route: '/lamp/strobe',
 	hander: function (request, reply) {
 		if (board.isReady) {
-
+			if (request.payload.interval) {
+				lamp.strobe(request.payload.interval);
+			} else {
+				lamp.strobe();
+			}
 		}
 	}
 })
@@ -64,7 +68,7 @@ server.route({
 	path: '/lamp/status',
 	handler: function (request, reply) {
 		if (board.isReady) {
-			lamp.
+			//lamp.
 			reply('{"this": "ok"}').code(200);
 		}
 	}
