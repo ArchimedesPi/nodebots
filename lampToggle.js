@@ -14,11 +14,46 @@ board.on("ready", function () {
 });
 
 server.route({
-	method: 'GET',
-	path: '/lampToggle',
+	method: 'POST',
+	path: '/lamp/toggle',
 	handler: function (request, reply) {
-		if (board.isReady) {lamp.toggle();}
-		reply('{"this": "ok"}').code(200);
+		if (board.isReady) {
+			lamp.toggle();
+			reply('{"this": "ok"}').code(200);
+		}
+	}
+});
+
+server.route({
+	method: 'POST',
+	path: '/lamp/off',
+	handler: function (request, reply) {
+		if (board.isReady) {
+			lamp.off();
+			reply('{"this": "ok"}').code(200);
+		}
+	}
+});
+
+server.route({
+	method: 'POST',
+	path: '/lamp/on',
+	handler: function (request, reply) {
+		if (board.isReady) {
+			lamp.on();
+			reply('{"this": "ok"}').code(200);
+		}
+	}
+});
+
+server.route({
+	method: 'GET',
+	path: '/lamp/status',
+	handler: function (request, reply) {
+		if (board.isReady) {
+			lamp.toggle();
+			reply('{"this": "ok"}').code(200);
+		}
 	}
 });
 
