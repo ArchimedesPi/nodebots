@@ -56,7 +56,19 @@ server.route({
     path: '/lamp/strobe',
     handler: function (request, reply) {
         if (board.isReady) {
-            lamp.strobe();
+            lamp.strobe(request.payload.interval);
+            reply('{"this": "ok"}').code(200);
+        }
+    }
+});
+
+server.route({
+    method: 'POST',
+    path: '/lamp/stop',
+    handler: function (request, reply) {
+        if (board.isReady) {
+            lamp.stop();
+            reply('{"this": "ok"}').code(200);
         }
     }
 });
@@ -66,8 +78,7 @@ server.route({
     path: '/lamp/status',
     handler: function (request, reply) {
         if (board.isReady) {
-            //lamp.
-            reply('{"this": "ok"}').code(200);
+            reply('{"this": "ok", "value": ' + lamp.value + '"}').code(200);
         }
     }
 });
