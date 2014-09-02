@@ -61,7 +61,7 @@ server.route({
 			}
 		}
 	}
-})
+});
 
 server.route({
 	method: 'GET',
