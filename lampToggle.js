@@ -16,6 +16,8 @@ board.on("ready", function () {
 
 });
 
+/* =====< REST APIs >===== */
+
 server.route({
     method: 'POST',
     path: '/lamp/toggle',
@@ -54,11 +56,7 @@ server.route({
     path: '/lamp/strobe',
     handler: function (request, reply) {
         if (board.isReady) {
-            if (request.payload.interval) {
-                lamp.strobe(request.payload.interval);
-            } else {
-                lamp.strobe();
-            }
+            lamp.strobe();
         }
     }
 });
@@ -69,6 +67,19 @@ server.route({
     handler: function (request, reply) {
         if (board.isReady) {
             //lamp.
+            reply('{"this": "ok"}').code(200);
+        }
+    }
+});
+
+/* =====< Legacy APIs >===== */
+
+server.route({
+    method: 'GET',
+    path: '/lampToggle',
+    handler: function (request, reply) {
+        if (board.isReady) {
+            lamp.toggle();
             reply('{"this": "ok"}').code(200);
         }
     }
