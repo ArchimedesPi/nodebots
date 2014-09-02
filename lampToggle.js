@@ -51,7 +51,7 @@ server.route({
 
 server.route({
     method: 'POST',
-    route: '/lamp/strobe',
+    path: '/lamp/strobe',
     handler: function (request, reply) {
         if (board.isReady) {
             if (request.payload.interval) {
