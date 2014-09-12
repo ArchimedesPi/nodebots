@@ -78,7 +78,7 @@ server.route({
     path: '/lamp/status',
     handler: function (request, reply) {
         if (board.isReady) {
-            reply('{"this": "ok", "value": ' + lamp.value + '"}').code(200);
+            reply('{"this": "ok", "on": ' + lamp.isOn + '}').code(200);
         }
     }
 });
